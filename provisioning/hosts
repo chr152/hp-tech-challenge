@@ -1,0 +1,5 @@
+127.0.0.1       localhost loghost
+192.168.135.2   jump01.hipages.com jump01
+192.168.135.10  dev01.hipages.com dev01
+192.168.135.11  dev02.hipages.com dev02
+
