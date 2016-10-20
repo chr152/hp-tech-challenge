@@ -1,0 +1,27 @@
+#!/bin/bash
+
+if [[ "$2" == "" || ( "$1" != "add" && "$1" != "rm" ) ]]; then
+    echo "Usage: $0 <add|rm> <username>"
+    exit 1
+fi
+
+cd ~/
+
+if [[ "$1" == "add" ]]; then
+    TAG=adduser
+    mkdir -p keys
+    cd keys
+    rm -rf "$2"
+    mkdir  "$2"
+    cd "$2"
+    ssh-keygen -t rsa -b 2048 -C "$2" -q -N '' -f id_rsa
+else
+    TAG=rmuser
+fi
+
+
+cd ~/ansible
+export ANSIBLE_INVENTORY=~/ansible/inventory
+export ANSIBLE_ROLES_PATH=~/ansible/roles
+export ANSIBLE_HOST_KEY_CHECKING=False
+ansible-playbook playbooks/site.yml --tags "$TAG" --extra-vars "username=$2"

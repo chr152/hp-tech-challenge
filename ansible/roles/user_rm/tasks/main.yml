@@ -1,0 +1,7 @@
+---
+# Remove all authorized_keys entries, but leave the user on the system, without a password, and leave the group
+- name: Remove ssh access
+  authorized_key: user='{{item}}' state=absent exclusive=yes key="{{ lookup('file', '/home/vagrant/keys/{{item}}/id_rsa.pub') }}"
+  with_items: '{{username}}'
+  become: yes
+  tags: rmuser

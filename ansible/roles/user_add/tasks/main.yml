@@ -1,0 +1,18 @@
+---
+- name: Add group
+  group: name='{{item}}'
+  with_items: '{{username}}'
+  become: yes
+  tags: adduser
+
+- name: Add user account
+  user: name='{{item}}' shell=/bin/bash group='{{item}}'
+  with_items: '{{username}}'
+  become: yes
+  tags: adduser
+
+- name: Copy ssh key
+  authorized_key: user='{{item}}' key="{{ lookup('file', '/home/vagrant/keys/{{item}}/id_rsa.pub') }}"
+  with_items: '{{username}}'
+  become: yes
+  tags: adduser
