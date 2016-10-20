@@ -4,9 +4,7 @@
 
 Prerequisites: vagrant 1.8.6 or higher with virtualbox
 
-*Note*: Tested on ubuntu, expect this to work elsewhere, as its vagrant
-
-      : The boxes are 32bit
+*Note*: Tested on ubuntu, expect this to work elsewhere, as its vagrant. The boxes are 32bit
 
 ### Start up vagrant environment
 * clone this repo
